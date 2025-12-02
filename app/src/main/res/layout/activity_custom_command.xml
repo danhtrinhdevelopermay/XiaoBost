@@ -5,18 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background"
+    android:background="@drawable/bg_gradient_main"
     tools:context=".ui.CustomCommandActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary"
-        app:navigationIcon="@drawable/ic_back"
-        app:navigationIconTint="@color/white"
-        app:title="@string/custom_command"
-        app:titleTextColor="@color/white" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:background="@drawable/bg_toolbar_gradient">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            app:tint="@color/primary" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_terminal"
+            app:tint="@color/primary" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="@string/custom_command"
+            android:textSize="20sp"
+            android:textColor="@color/primary"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="bold"
+            android:shadowColor="@color/primary"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="6" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bg_header_gradient"
+        android:alpha="0.3" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,22 +64,27 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp">
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:background="@drawable/bg_card_gaming">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/quick_commands"
                     android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp" />
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="12dp" />
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
@@ -52,49 +94,74 @@
                     <com.google.android.material.chip.ChipGroup
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:singleLine="true">
+                        app:singleLine="true"
+                        app:chipSpacingHorizontal="8dp">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipLs"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ls -la"
-                            style="@style/Widget.Material3.Chip.Suggestion" />
+                            android:textColor="@color/primary"
+                            app:chipBackgroundColor="@color/surface_elevated"
+                            app:chipStrokeColor="@color/primary"
+                            app:chipStrokeWidth="1dp"
+                            app:chipCornerRadius="8dp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipPs"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="ps aux"
-                            style="@style/Widget.Material3.Chip.Suggestion" />
+                            android:textColor="@color/neon_purple"
+                            app:chipBackgroundColor="@color/surface_elevated"
+                            app:chipStrokeColor="@color/neon_purple"
+                            app:chipStrokeWidth="1dp"
+                            app:chipCornerRadius="8dp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipTop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="top"
-                            style="@style/Widget.Material3.Chip.Suggestion" />
+                            android:textColor="@color/neon_green"
+                            app:chipBackgroundColor="@color/surface_elevated"
+                            app:chipStrokeColor="@color/neon_green"
+                            app:chipStrokeWidth="1dp"
+                            app:chipCornerRadius="8dp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipDf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="df -h"
-                            style="@style/Widget.Material3.Chip.Suggestion" />
+                            android:textColor="@color/neon_orange"
+                            app:chipBackgroundColor="@color/surface_elevated"
+                            app:chipStrokeColor="@color/neon_orange"
+                            app:chipStrokeWidth="1dp"
+                            app:chipCornerRadius="8dp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipCatProc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="cpuinfo"
-                            style="@style/Widget.Material3.Chip.Suggestion" />
+                            android:textColor="@color/accent"
+                            app:chipBackgroundColor="@color/surface_elevated"
+                            app:chipStrokeColor="@color/accent"
+                            app:chipStrokeWidth="1dp"
+                            app:chipCornerRadius="8dp" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipGetprop"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="getprop"
-                            style="@style/Widget.Material3.Chip.Suggestion" />
+                            android:textColor="@color/neon_yellow"
+                            app:chipBackgroundColor="@color/surface_elevated"
+                            app:chipStrokeColor="@color/neon_yellow"
+                            app:chipStrokeWidth="1dp"
+                            app:chipCornerRadius="8dp" />
 
                     </com.google.android.material.chip.ChipGroup>
 
@@ -105,6 +172,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:hint="@string/enter_command"
+                    app:boxStrokeColor="@color/primary"
+                    app:hintTextColor="@color/primary"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp"
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -112,6 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="monospace"
+                        android:textColor="@color/terminal_text"
                         android:inputType="text"
                         android:imeOptions="actionDone" />
 
@@ -120,23 +194,29 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
                     <ImageButton
                         android:id="@+id/btnPrevious"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
                         android:src="@drawable/ic_arrow_up"
-                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/bg_button_outlined_neon"
+                        android:padding="10dp"
+                        app:tint="@color/primary"
                         android:contentDescription="@string/previous_command" />
 
                     <ImageButton
                         android:id="@+id/btnNext"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="8dp"
                         android:src="@drawable/ic_arrow_down"
-                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:background="@drawable/bg_button_outlined_neon"
+                        android:padding="10dp"
+                        app:tint="@color/primary"
                         android:contentDescription="@string/next_command" />
 
                     <View
@@ -144,19 +224,33 @@
                         android:layout_height="0dp"
                         android:layout_weight="1" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnClear"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="8dp"
                         android:text="@string/clear"
-                        style="@style/Widget.Material3.Button.TextButton" />
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp"
+                        app:backgroundTint="@color/surface_elevated"
+                        app:cornerRadius="10dp" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnExecute"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="44dp"
+                        android:paddingHorizontal="20dp"
                         android:text="@string/execute"
-                        style="@style/Widget.Material3.Button" />
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/bg_button_neon"
+                        app:cornerRadius="10dp"
+                        app:backgroundTint="@null"
+                        app:icon="@drawable/ic_play"
+                        app:iconGravity="textStart"
+                        app:iconTint="@color/black"
+                        app:iconSize="16dp" />
 
                 </LinearLayout>
 
@@ -166,11 +260,13 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
+            style="@style/GamingProgressIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:indeterminate="true" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -178,25 +274,73 @@
             android:layout_weight="1"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/terminal_bg"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/neon_green"
+            app:strokeWidth="1dp">
 
-            <ScrollView
-                android:id="@+id/scrollView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvOutput"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:padding="12dp"
-                    android:fontFamily="monospace"
-                    android:textColor="@color/terminal_text"
-                    android:textSize="12sp"
-                    android:hint="@string/output_hint"
-                    android:textColorHint="@color/terminal_hint" />
+                    android:gravity="center_vertical"
+                    android:background="@color/background_dark">
 
-            </ScrollView>
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/bg_dot_red" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/bg_dot_yellow" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/bg_dot_green" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:text="Terminal Output"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:fontFamily="monospace" />
+
+                </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvOutput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="14dp"
+                        android:fontFamily="monospace"
+                        android:textColor="@color/terminal_text"
+                        android:textSize="12sp"
+                        android:lineSpacingMultiplier="1.3"
+                        android:hint="@string/output_hint"
+                        android:textColorHint="@color/terminal_hint" />
+
+                </ScrollView>
+
+            </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 

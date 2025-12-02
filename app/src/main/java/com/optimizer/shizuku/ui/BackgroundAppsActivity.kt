@@ -3,12 +3,12 @@ package com.optimizer.shizuku.ui
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.optimizer.shizuku.R
 import com.optimizer.shizuku.databinding.ActivityBackgroundAppsBinding
 import com.optimizer.shizuku.utils.ShizukuHelper
@@ -28,16 +28,18 @@ class BackgroundAppsActivity : AppCompatActivity() {
         binding = ActivityBackgroundAppsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupToolbar()
+        setupUI()
         setupRecyclerView()
         setupButtons()
         loadApps()
     }
 
-    private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.background_apps_title)
+    private fun setupUI() {
+        binding.btnBack.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
+            finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
     }
 
     private fun setupRecyclerView() {
@@ -60,6 +62,7 @@ class BackgroundAppsActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         binding.btnDisableBackground.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             if (selectedApps.isEmpty()) {
                 Toast.makeText(this, R.string.no_apps_selected, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -74,6 +77,7 @@ class BackgroundAppsActivity : AppCompatActivity() {
         }
 
         binding.btnEnableBackground.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             if (selectedApps.isEmpty()) {
                 Toast.makeText(this, R.string.no_apps_selected, Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -88,6 +92,7 @@ class BackgroundAppsActivity : AppCompatActivity() {
         }
 
         binding.btnSelectAll.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             appListAdapter.selectAll()
             selectedApps.clear()
             selectedApps.addAll(appListAdapter.getAllPackageNames())
@@ -95,6 +100,7 @@ class BackgroundAppsActivity : AppCompatActivity() {
         }
 
         binding.btnDeselectAll.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             appListAdapter.deselectAll()
             selectedApps.clear()
             updateSelectedCount()
@@ -108,7 +114,7 @@ class BackgroundAppsActivity : AppCompatActivity() {
             getString(R.string.confirm_enable_background, selectedApps.size)
         }
 
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
             .setTitle(if (isDisable) R.string.disable_background else R.string.enable_background)
             .setMessage(message)
             .setPositiveButton(R.string.confirm) { _, _ ->
@@ -134,9 +140,9 @@ class BackgroundAppsActivity : AppCompatActivity() {
                 binding.recyclerViewApps.visibility = View.VISIBLE
                 
                 if (apps.isEmpty()) {
-                    binding.tvEmptyState.visibility = View.VISIBLE
+                    binding.emptyStateContainer.visibility = View.VISIBLE
                 } else {
-                    binding.tvEmptyState.visibility = View.GONE
+                    binding.emptyStateContainer.visibility = View.GONE
                     appListAdapter.submitList(apps)
                 }
             }
@@ -231,7 +237,7 @@ class BackgroundAppsActivity : AppCompatActivity() {
         val action = if (isDisable) getString(R.string.disabled) else getString(R.string.enabled)
         val message = getString(R.string.background_result, action, successCount, failCount)
         
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
             .setTitle(R.string.result)
             .setMessage(message)
             .setPositiveButton(R.string.ok) { _, _ ->
@@ -242,12 +248,9 @@ class BackgroundAppsActivity : AppCompatActivity() {
             .show()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }
 

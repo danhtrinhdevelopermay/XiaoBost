@@ -5,10 +5,12 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.optimizer.shizuku.R
 import com.optimizer.shizuku.databinding.ActivityMainBinding
@@ -44,6 +46,12 @@ class MainActivity : AppCompatActivity() {
         initShizuku()
         setupUI()
         updateShizukuStatus()
+        startGlowAnimation()
+    }
+
+    private fun startGlowAnimation() {
+        val glowAnim = AnimationUtils.loadAnimation(this, R.anim.glow_pulse)
+        binding.statusIndicator.startAnimation(glowAnim)
     }
 
     private fun initShizuku() {
@@ -98,6 +106,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         binding.btnRequestPermission.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             val state = ShizukuHelper.getState(this)
             when (state) {
                 ShizukuHelper.ShizukuState.NOT_INSTALLED,
@@ -118,22 +127,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnCustomCommand.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             if (!ShizukuHelper.hasShizukuPermission()) {
                 Toast.makeText(this, "Please grant Shizuku permission first", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             startActivity(Intent(this, CustomCommandActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
         binding.btnBackgroundApps.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             if (!ShizukuHelper.hasShizukuPermission()) {
                 Toast.makeText(this, "Please grant Shizuku permission first", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             startActivity(Intent(this, BackgroundAppsActivity::class.java))
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
 
         binding.btnDownloadShizuku.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://shizuku.rikka.app/download/"))
             startActivity(intent)
         }
@@ -156,7 +170,8 @@ class MainActivity : AppCompatActivity() {
                     ShizukuHelper.ShizukuState.NOT_INSTALLED -> {
                         tvShizukuStatus.text = "Shizuku is not installed"
                         tvShizukuStatus.setTextColor(getColor(R.color.error_red))
-                        statusIcon.setImageResource(R.drawable.ic_error)
+                        statusIcon.setImageResource(R.drawable.ic_error_neon)
+                        statusContainer.setBackgroundResource(R.drawable.bg_card_status_error)
                         btnRequestPermission.visibility = View.GONE
                         btnDownloadShizuku.visibility = View.VISIBLE
                         cardWarning.visibility = View.VISIBLE
@@ -164,7 +179,8 @@ class MainActivity : AppCompatActivity() {
                     ShizukuHelper.ShizukuState.INSTALLED_NOT_RUNNING -> {
                         tvShizukuStatus.text = "Shizuku installed but not running"
                         tvShizukuStatus.setTextColor(getColor(R.color.error_red))
-                        statusIcon.setImageResource(R.drawable.ic_error)
+                        statusIcon.setImageResource(R.drawable.ic_error_neon)
+                        statusContainer.setBackgroundResource(R.drawable.bg_card_status_error)
                         btnRequestPermission.visibility = View.GONE
                         btnDownloadShizuku.visibility = View.GONE
                         cardWarning.visibility = View.VISIBLE
@@ -172,7 +188,8 @@ class MainActivity : AppCompatActivity() {
                     ShizukuHelper.ShizukuState.RUNNING_NO_PERMISSION -> {
                         tvShizukuStatus.text = "Shizuku running - Permission required"
                         tvShizukuStatus.setTextColor(getColor(R.color.warning_yellow))
-                        statusIcon.setImageResource(R.drawable.ic_warning)
+                        statusIcon.setImageResource(R.drawable.ic_warning_neon)
+                        statusContainer.setBackgroundResource(R.drawable.bg_card_status_warning)
                         btnRequestPermission.visibility = View.VISIBLE
                         btnDownloadShizuku.visibility = View.GONE
                         cardWarning.visibility = View.GONE
@@ -180,9 +197,10 @@ class MainActivity : AppCompatActivity() {
                     ShizukuHelper.ShizukuState.READY -> {
                         val isRootMode = ShizukuHelper.isRootMode()
                         val modeText = if (isRootMode) "Root Mode" else "ADB Mode"
-                        tvShizukuStatus.text = "Shizuku connected ($modeText)"
+                        tvShizukuStatus.text = "TURBO CONNECTED ($modeText)"
                         tvShizukuStatus.setTextColor(getColor(R.color.success_green))
-                        statusIcon.setImageResource(R.drawable.ic_check)
+                        statusIcon.setImageResource(R.drawable.ic_check_neon)
+                        statusContainer.setBackgroundResource(R.drawable.bg_card_status_success)
                         btnRequestPermission.visibility = View.GONE
                         btnDownloadShizuku.visibility = View.GONE
                         cardWarning.visibility = View.GONE
@@ -207,7 +225,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (command.requiresRoot && !ShizukuHelper.isRootMode()) {
-            AlertDialog.Builder(this)
+            MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
                 .setTitle("Root Required")
                 .setMessage("This command requires root access. Shizuku is running in ADB mode.\n\nDo you want to try anyway?")
                 .setPositiveButton("Try Anyway") { _, _ ->
@@ -223,7 +241,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkWarningAndRun(command: OptimizationCommands.OptimizationCommand) {
         if (command.warning != null) {
-            AlertDialog.Builder(this)
+            MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
                 .setTitle("Warning")
                 .setMessage(command.warning + "\n\nDo you want to continue?")
                 .setPositiveButton("Continue") { _, _ ->
@@ -260,7 +278,7 @@ class MainActivity : AppCompatActivity() {
             "Command failed!\n\nError:\n${result.error}"
         }
 
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
             .setTitle(commandName)
             .setMessage(message)
             .setPositiveButton("OK", null)
@@ -276,7 +294,7 @@ class MainActivity : AppCompatActivity() {
             "Shizuku is not installed. Please install Shizuku to use this app.\n\nShizuku allows apps to run shell commands with elevated permissions without root."
         }
 
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
             .setTitle(if (isInstalled) "Shizuku Not Running" else "Install Shizuku")
             .setMessage(message)
             .setPositiveButton("Download Shizuku") { _, _ ->

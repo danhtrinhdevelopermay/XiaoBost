@@ -4,31 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="1dp"
+    android:layout_marginBottom="10dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="12dp"
-        android:gravity="center_vertical">
+        android:padding="14dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_item_command">
 
-        <ImageView
-            android:id="@+id/ivAppIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/app_icon"
-            tools:src="@mipmap/ic_launcher" />
+        <FrameLayout
+            android:layout_width="52dp"
+            android:layout_height="52dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_app_icon_glow"
+                android:alpha="0.3" />
+
+            <ImageView
+                android:id="@+id/ivAppIcon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_icon"
+                tools:src="@mipmap/ic_launcher" />
+
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginHorizontal="12dp"
+            android:layout_marginHorizontal="14dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,6 +61,7 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
                     android:maxLines="1"
                     android:ellipsize="end"
                     tools:text="App Name" />
@@ -53,13 +70,14 @@
                     android:id="@+id/tvSystemBadge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:paddingHorizontal="6dp"
-                    android:paddingVertical="2dp"
-                    android:background="@drawable/badge_system"
+                    android:layout_marginStart="8dp"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="3dp"
+                    android:background="@drawable/bg_badge_system"
                     android:text="@string/system_app"
-                    android:textSize="10sp"
-                    android:textColor="@android:color/white"
+                    android:textSize="9sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-black"
                     android:visibility="gone"
                     tools:visibility="visible" />
 
@@ -69,9 +87,10 @@
                 android:id="@+id/tvPackageName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:textSize="12sp"
-                android:textColor="@color/text_secondary"
+                android:layout_marginTop="4dp"
+                android:textSize="11sp"
+                android:textColor="@color/text_muted"
+                android:fontFamily="monospace"
                 android:maxLines="1"
                 android:ellipsize="end"
                 tools:text="com.example.app" />
@@ -81,7 +100,9 @@
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:buttonTint="@color/primary"
+            app:useMaterialThemeColors="false" />
 
     </LinearLayout>
 

@@ -3,6 +3,33 @@
 ## Overview
 Ứng dụng Android Kotlin sử dụng Shizuku API để chạy các lệnh shell tối ưu hóa hiệu suất điện thoại. Ứng dụng cho phép người dùng chạy các lệnh shell có sẵn hoặc tùy chỉnh thông qua Shizuku.
 
+## UI Design - Gaming Turbo Style
+Giao diện được thiết kế theo phong cách gaming turbo sang trọng với:
+
+### Color Palette
+- **Primary**: Neon Cyan (#00E5FF)
+- **Accent**: Neon Red (#FF1744)
+- **Secondary**: Neon Purple (#B14EFF)
+- **Background**: Dark gradient (#0A0E17 → #111827)
+- **Success**: Neon Green (#00FF88)
+- **Warning**: Neon Yellow (#FFE600)
+
+### UI Features
+- Dark theme với hiệu ứng glow neon
+- Gradient backgrounds và cards với viền sáng
+- Button với ripple effects và pulse animations
+- Tab indicator với gradient rainbow
+- Terminal style output với macOS-style window controls
+- Smooth slide transitions giữa các màn hình
+- Item fade-in animations trong RecyclerView
+
+### Key Drawables
+- `bg_gradient_main.xml` - Background gradient chính
+- `bg_card_gaming.xml` - Card style gaming
+- `bg_button_neon.xml` - Button với gradient cyan
+- `bg_button_accent.xml` - Button với gradient red
+- `bg_tab_indicator.xml` - Tab indicator rainbow
+
 ## Project Structure
 ```
 ./
@@ -21,9 +48,22 @@
 │   │   ├── res/
 │   │   │   ├── layout/
 │   │   │   │   ├── activity_main.xml
+│   │   │   │   ├── activity_custom_command.xml
 │   │   │   │   ├── activity_background_apps.xml
-│   │   │   │   ├── item_app.xml
-│   │   │   │   └── ...
+│   │   │   │   ├── item_command.xml
+│   │   │   │   └── item_app.xml
+│   │   │   ├── drawable/
+│   │   │   │   ├── bg_*.xml (Gaming backgrounds)
+│   │   │   │   └── ic_*.xml (Gaming icons)
+│   │   │   ├── anim/
+│   │   │   │   ├── button_pulse.xml
+│   │   │   │   ├── item_fade_in.xml
+│   │   │   │   ├── glow_pulse.xml
+│   │   │   │   └── slide_*.xml
+│   │   │   └── values/
+│   │   │       ├── colors.xml (Gaming color palette)
+│   │   │       ├── themes.xml (Dark gaming theme)
+│   │   │       └── styles.xml (Gaming styles)
 │   │   └── AndroidManifest.xml
 │   └── build.gradle.kts
 ├── gradle/
@@ -68,7 +108,15 @@
 - 2025-12-02: Sửa lỗi gradle-wrapper.jar thiếu
 - 2025-12-02: Sửa lỗi Shizuku.newProcess() private trong Shizuku 13.1.5 (dùng reflection)
 - 2025-12-02: Thêm tính năng quản lý ứng dụng chạy nền (BackgroundAppsActivity)
+- 2025-12-02: **Redesign UI phong cách Gaming Turbo** với:
+  - Dark theme với neon glow effects
+  - Gradient backgrounds (cyan/purple/red)
+  - Animated buttons và transitions
+  - Terminal style với macOS window controls
+  - Gaming-style icons và badges
+  - Pulse và fade animations
 
 ## User Preferences
 - Language: Vietnamese
 - Build system: GitHub Actions
+- UI Style: Gaming Turbo / Neon Dark Theme

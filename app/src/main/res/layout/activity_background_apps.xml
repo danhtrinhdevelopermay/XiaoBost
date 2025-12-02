@@ -5,42 +5,86 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background"
+    android:background="@drawable/bg_gradient_main"
     tools:context=".ui.BackgroundAppsActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary"
-        app:titleTextColor="@color/white"
-        app:navigationIconTint="@color/white" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:background="@drawable/bg_toolbar_gradient">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            app:tint="@color/primary" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_apps_gaming"
+            app:tint="@color/accent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:text="@string/background_apps"
+            android:textSize="20sp"
+            android:textColor="@color/accent"
+            android:fontFamily="sans-serif-black"
+            android:textStyle="bold"
+            android:shadowColor="@color/accent"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="6" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/bg_header_gradient"
+        android:alpha="0.3" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="2dp">
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@drawable/bg_card_gaming">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/background_apps_description"
-                android:textSize="14sp"
-                android:textColor="@color/text_secondary" />
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif"
+                android:lineSpacingMultiplier="1.3" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/tvSelectedCount"
@@ -50,23 +94,28 @@
                     android:text="@string/selected_count_default"
                     android:textSize="14sp"
                     android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:fontFamily="sans-serif-medium"
                     android:gravity="center_vertical" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSelectAll"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:text="@string/select_all"
-                    android:textSize="12sp"
-                    style="@style/Widget.Material3.Button.TextButton" />
+                    android:textSize="11sp"
+                    android:textColor="@color/primary"
+                    app:backgroundTint="@android:color/transparent"
+                    app:rippleColor="@color/ripple_color" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDeselectAll"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:text="@string/deselect_all"
-                    android:textSize="12sp"
-                    style="@style/Widget.Material3.Button.TextButton" />
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    app:backgroundTint="@android:color/transparent" />
 
             </LinearLayout>
 
@@ -89,20 +138,40 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
+            style="@style/GamingProgressIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:indeterminate="true" />
 
-        <TextView
-            android:id="@+id/tvEmptyState"
+        <LinearLayout
+            android:id="@+id/emptyStateContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/no_third_party_apps"
-            android:textSize="16sp"
-            android:textColor="@color/text_secondary"
-            android:visibility="gone" />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_apps_gaming"
+                app:tint="@color/text_muted"
+                android:alpha="0.5" />
+
+            <TextView
+                android:id="@+id/tvEmptyState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/no_third_party_apps"
+                android:textSize="15sp"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="sans-serif-medium" />
+
+        </LinearLayout>
 
     </FrameLayout>
 
@@ -111,30 +180,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@color/card_background"
-        android:elevation="8dp">
+        android:background="@drawable/bg_toolbar_gradient">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDisableBackground"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             android:text="@string/disable_background"
+            android:textColor="@color/white"
             android:textSize="12sp"
-            app:backgroundTint="@color/error_red"
-            style="@style/Widget.Material3.Button" />
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_accent"
+            app:cornerRadius="14dp"
+            app:backgroundTint="@null" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEnableBackground"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:text="@string/enable_background"
+            android:textColor="@color/black"
             android:textSize="12sp"
-            app:backgroundTint="@color/success_green"
-            style="@style/Widget.Material3.Button" />
+            android:textStyle="bold"
+            android:background="@drawable/bg_button_green"
+            app:cornerRadius="14dp"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 

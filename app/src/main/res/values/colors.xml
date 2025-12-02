@@ -1,31 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#1565C0</color>
-    <color name="primary_dark">#0D47A1</color>
-    <color name="primary_light">#42A5F5</color>
-    <color name="accent">#FF6D00</color>
+    <!-- Gaming Turbo Color Palette -->
+    <color name="primary">#00E5FF</color>
+    <color name="primary_dark">#00B8D4</color>
+    <color name="primary_light">#18FFFF</color>
+    <color name="accent">#FF1744</color>
+    <color name="accent_secondary">#D500F9</color>
     
-    <color name="background">#F5F5F5</color>
-    <color name="surface">#FFFFFF</color>
+    <!-- Dark Gaming Background -->
+    <color name="background">#0A0E17</color>
+    <color name="background_dark">#050810</color>
+    <color name="background_card">#111827</color>
+    <color name="surface">#1A1F2E</color>
+    <color name="surface_elevated">#232A3D</color>
     
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
+    <!-- Neon Glow Colors -->
+    <color name="neon_cyan">#00FFFF</color>
+    <color name="neon_magenta">#FF00FF</color>
+    <color name="neon_purple">#B14EFF</color>
+    <color name="neon_blue">#4D7CFE</color>
+    <color name="neon_green">#00FF88</color>
+    <color name="neon_orange">#FF6B35</color>
+    <color name="neon_yellow">#FFE600</color>
+    
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#00E5FF</color>
+    <color name="gradient_center">#B14EFF</color>
+    <color name="gradient_end">#FF1744</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A0AEC0</color>
+    <color name="text_muted">#4A5568</color>
     
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     
-    <color name="tab_unselected">#B3FFFFFF</color>
+    <color name="tab_unselected">#4A5568</color>
+    <color name="tab_selected">#00E5FF</color>
     
-    <color name="success_green">#2E7D32</color>
-    <color name="warning_yellow">#F9A825</color>
-    <color name="error_red">#C62828</color>
+    <!-- Status Colors -->
+    <color name="success_green">#00FF88</color>
+    <color name="warning_yellow">#FFE600</color>
+    <color name="error_red">#FF1744</color>
     
-    <color name="warning_bg">#FFF8E1</color>
-    <color name="warning_text">#5D4037</color>
+    <color name="warning_bg">#2D1F00</color>
+    <color name="warning_text">#FFE600</color>
     
-    <color name="terminal_bg">#1E1E1E</color>
-    <color name="terminal_text">#00FF00</color>
-    <color name="terminal_hint">#666666</color>
+    <!-- Terminal Gaming Style -->
+    <color name="terminal_bg">#0D1117</color>
+    <color name="terminal_text">#00FF88</color>
+    <color name="terminal_hint">#4A5568</color>
+    <color name="terminal_cursor">#00E5FF</color>
     
-    <color name="card_background">#FFFFFF</color>
+    <color name="card_background">#111827</color>
+    <color name="card_stroke">#1E3A5F</color>
+    
+    <!-- Category Colors -->
+    <color name="category_performance">#FF6B35</color>
+    <color name="category_battery">#00FF88</color>
+    <color name="category_ram">#B14EFF</color>
+    <color name="category_gaming">#FF1744</color>
+    <color name="category_general">#00E5FF</color>
+    
+    <!-- Ripple -->
+    <color name="ripple_color">#3300E5FF</color>
+    
+    <!-- Overlay -->
+    <color name="overlay_dark">#CC000000</color>
+    <color name="overlay_light">#1A00E5FF</color>
 </resources>

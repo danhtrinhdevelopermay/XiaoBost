@@ -2,8 +2,10 @@ package com.optimizer.shizuku.ui
 
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.optimizer.shizuku.R
 import com.optimizer.shizuku.databinding.ActivityCustomCommandBinding
 import com.optimizer.shizuku.utils.ShizukuHelper
 import kotlinx.coroutines.CoroutineScope
@@ -26,24 +28,30 @@ class CustomCommandActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        binding.toolbar.setNavigationOnClickListener {
+        binding.btnBack.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
 
         binding.btnExecute.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             executeCommand()
         }
 
         binding.btnClear.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             binding.etCommand.text?.clear()
             binding.tvOutput.text = ""
         }
 
         binding.btnPrevious.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             showPreviousCommand()
         }
 
         binding.btnNext.setOnClickListener {
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             showNextCommand()
         }
 
@@ -127,5 +135,10 @@ class CustomCommandActivity : AppCompatActivity() {
             historyIndex = commandHistory.size
             binding.etCommand.text?.clear()
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }

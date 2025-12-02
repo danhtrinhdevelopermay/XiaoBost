@@ -3,9 +3,11 @@ package com.optimizer.shizuku.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.optimizer.shizuku.R
 import com.optimizer.shizuku.databinding.ItemAppBinding
 
 class AppListAdapter(
@@ -24,7 +26,7 @@ class AppListAdapter(
     }
 
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position)
     }
 
     override fun onBindViewHolder(holder: AppViewHolder, position: Int, payloads: MutableList<Any>) {
@@ -58,7 +60,7 @@ class AppListAdapter(
         private val binding: ItemAppBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(appInfo: AppInfo) {
+        fun bind(appInfo: AppInfo, position: Int) {
             binding.apply {
                 ivAppIcon.setImageDrawable(appInfo.icon)
                 tvAppName.text = appInfo.appName
@@ -77,8 +79,13 @@ class AppListAdapter(
                 }
                 
                 root.setOnClickListener {
+                    it.startAnimation(AnimationUtils.loadAnimation(it.context, R.anim.button_pulse))
                     checkbox.isChecked = !checkbox.isChecked
                 }
+                
+                root.startAnimation(AnimationUtils.loadAnimation(root.context, R.anim.item_fade_in).apply {
+                    startOffset = (position * 30).toLong()
+                })
             }
         }
 
