@@ -19,7 +19,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd ShizukuOptimizer && bash show_project_info.sh"
+args = "echo \"=== Shizuku Optimizer ===\" && echo \"Android Kotlin Project\" && echo \"\" && echo \"Files:\" && find app -name \"*.kt\" 2>/dev/null | head -10 && echo \"\" && echo \"Ready to push to GitHub!\""
 
 [workflows.workflow.metadata]
 outputType = "console"

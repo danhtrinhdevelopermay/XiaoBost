@@ -5,76 +5,55 @@
 
 ## Project Structure
 ```
-ShizukuOptimizer/
+./
 ├── app/
 │   ├── src/main/
 │   │   ├── java/com/optimizer/shizuku/
 │   │   │   ├── ui/
-│   │   │   │   ├── MainActivity.kt - Màn hình chính với tabs cho các loại lệnh
-│   │   │   │   ├── CustomCommandActivity.kt - Chạy lệnh shell tùy chỉnh
-│   │   │   │   └── CommandAdapter.kt - Adapter cho RecyclerView
+│   │   │   │   ├── MainActivity.kt
+│   │   │   │   ├── CustomCommandActivity.kt
+│   │   │   │   └── CommandAdapter.kt
 │   │   │   └── utils/
-│   │   │       ├── ShizukuHelper.kt - Tích hợp Shizuku API với state management
-│   │   │       └── OptimizationCommands.kt - Các lệnh tối ưu hóa đầy đủ
-│   │   ├── res/ - Resources (layouts, drawables, values)
+│   │   │       ├── ShizukuHelper.kt
+│   │   │       └── OptimizationCommands.kt
+│   │   ├── res/
 │   │   └── AndroidManifest.xml
-│   └── build.gradle.kts - App-level Gradle config
+│   └── build.gradle.kts
 ├── .github/workflows/
-│   ├── build-apk.yml - CI để build APK tự động
-│   └── release.yml - Tạo release khi push tag
-├── gradle/ - Gradle wrapper
-├── build.gradle.kts - Project-level Gradle config
+│   ├── build-apk.yml
+│   └── release.yml
+├── gradle/
+├── build.gradle.kts
 └── settings.gradle.kts
 ```
 
 ## Key Components
 
 ### ShizukuHelper.kt
-- State management với enum ShizukuState (NOT_INSTALLED, INSTALLED_NOT_RUNNING, RUNNING_NO_PERMISSION, READY)
-- Kiểm tra package Shizuku đã cài đặt chưa
-- Binder lifecycle management với init() và cleanup()
-- Thực thi lệnh shell với command chaining
-- Permission handling
+- State management với enum ShizukuState
+- Binder lifecycle management
+- Command execution với chaining
 
 ### OptimizationCommands.kt
-Các lệnh shell được phân loại với cảnh báo cho lệnh nguy hiểm:
-- **Performance**: Fixed performance mode, disable animations, max refresh rate, DEX optimization
-- **Battery**: Battery saver, doze mode, disable AOD, powersave governor
-- **RAM**: Clear cache, kill background apps, limit processes
-- **Gaming**: Max performance combo, disable thermal throttling
-- **General**: System info, restore defaults
+- Performance, Battery, RAM, Gaming, General commands
+- Cảnh báo cho lệnh nguy hiểm
 
 ## Build Instructions
 
-### Local Build (requires Android SDK)
+### GitHub Actions (Recommended)
+1. Push project to GitHub
+2. GitHub Actions sẽ tự động build APK
+3. Download từ Actions > Artifacts
+
+### Local Build
 ```bash
-cd ShizukuOptimizer
 ./gradlew assembleDebug
 ```
 
-### GitHub Actions (Recommended)
-1. Push project to GitHub
-2. GitHub Actions will automatically build APK
-3. Download from Actions > Artifacts
-
-### Create Release
-```bash
-git tag v1.0
-git push origin v1.0
-```
-
 ## Recent Changes
-- 2024-12-02: Khởi tạo project với Shizuku API integration
-- Thêm ShizukuState enum để phân biệt 4 trạng thái Shizuku
-- Thêm cảnh báo cho các lệnh nguy hiểm
-- Fix multi-command chaining với &&
-- Cấu hình GitHub Actions workflows
+- 2024-12-02: Khởi tạo project
+- Di chuyển ra thư mục gốc để dễ push GitHub
 
 ## User Preferences
 - Language: Vietnamese
-- Focus: Android Kotlin development
 - Build system: GitHub Actions
-
-## Notes
-- Đây là Android project, cần push lên GitHub để build APK
-- Không thể build/chạy trực tiếp trên Replit (không có Android SDK)
