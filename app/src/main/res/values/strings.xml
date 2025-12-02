@@ -41,7 +41,8 @@
     <!-- Background Apps Manager -->
     <string name="background_apps">Background Apps</string>
     <string name="background_apps_title">Manage Background Apps</string>
-    <string name="background_apps_description">Select third-party apps to disable or enable background activity. System apps are not shown.</string>
+    <string name="background_apps_description">Select apps to disable or enable background activity.</string>
+    <string name="system_app">System</string>
     <string name="app_icon">App icon</string>
     <string name="select_all">Select All</string>
     <string name="deselect_all">Deselect All</string>

@@ -149,17 +149,28 @@ class BackgroundAppsActivity : AppCompatActivity() {
         
         return installedApps
             .filter { appInfo ->
-                (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0 &&
-                appInfo.packageName != packageName
+                appInfo.packageName != packageName &&
+                appInfo.packageName != "rikka.shizuku" &&
+                !appInfo.packageName.startsWith("com.android.") &&
+                !appInfo.packageName.startsWith("android") &&
+                !appInfo.packageName.startsWith("com.google.android.providers.") &&
+                !appInfo.packageName.startsWith("com.google.android.inputmethod") &&
+                !appInfo.packageName.startsWith("com.google.android.webview") &&
+                appInfo.packageName != "com.google.android.gsf" &&
+                appInfo.packageName != "com.google.android.gsf.login" &&
+                appInfo.packageName != "com.google.android.gms" &&
+                appInfo.packageName != "com.google.android.packageinstaller"
             }
             .map { appInfo ->
+                val isSystemApp = (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) != 0
                 AppInfo(
                     packageName = appInfo.packageName,
                     appName = pm.getApplicationLabel(appInfo).toString(),
-                    icon = pm.getApplicationIcon(appInfo)
+                    icon = pm.getApplicationIcon(appInfo),
+                    isSystemApp = isSystemApp
                 )
             }
-            .sortedBy { it.appName.lowercase() }
+            .sortedWith(compareBy({ it.isSystemApp }, { it.appName.lowercase() }))
     }
 
     private fun updateSelectedCount() {
@@ -243,5 +254,6 @@ class BackgroundAppsActivity : AppCompatActivity() {
 data class AppInfo(
     val packageName: String,
     val appName: String,
-    val icon: android.graphics.drawable.Drawable
+    val icon: android.graphics.drawable.Drawable,
+    val isSystemApp: Boolean = false
 )

@@ -31,16 +31,39 @@
             android:layout_marginHorizontal="12dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvAppName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:maxLines="1"
-                android:ellipsize="end"
-                tools:text="App Name" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvAppName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="App Name" />
+
+                <TextView
+                    android:id="@+id/tvSystemBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:background="@drawable/badge_system"
+                    android:text="@string/system_app"
+                    android:textSize="10sp"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvPackageName"

@@ -1,6 +1,7 @@
 package com.optimizer.shizuku.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -62,6 +63,7 @@ class AppListAdapter(
                 ivAppIcon.setImageDrawable(appInfo.icon)
                 tvAppName.text = appInfo.appName
                 tvPackageName.text = appInfo.packageName
+                tvSystemBadge.visibility = if (appInfo.isSystemApp) View.VISIBLE else View.GONE
                 
                 checkbox.setOnCheckedChangeListener(null)
                 checkbox.isChecked = selectedItems.contains(appInfo.packageName)
