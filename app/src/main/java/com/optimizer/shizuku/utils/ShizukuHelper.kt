@@ -10,6 +10,17 @@ object ShizukuHelper {
 
     private const val REQUEST_CODE_PERMISSION = 1001
     private const val SHIZUKU_PACKAGE = "moe.shizuku.privileged.api"
+    
+    private fun createShizukuProcess(cmd: Array<String>, env: Array<String>?, dir: String?): Process {
+        return Shizuku::class.java.getDeclaredMethod(
+            "newProcess",
+            Array<String>::class.java,
+            Array<String>::class.java,
+            String::class.java
+        ).apply { 
+            isAccessible = true 
+        }.invoke(null, cmd, env, dir) as Process
+    }
 
     enum class ShizukuState {
         NOT_INSTALLED,
@@ -143,7 +154,7 @@ object ShizukuHelper {
                 .filter { it.isNotEmpty() }
                 .joinToString(" && ")
 
-            val process = Shizuku.newProcess(arrayOf("sh", "-c", normalizedCommand), null, null)
+            val process = createShizukuProcess(arrayOf("sh", "-c", normalizedCommand), null, null)
             
             val outputReader = BufferedReader(InputStreamReader(process.inputStream))
             val errorReader = BufferedReader(InputStreamReader(process.errorStream))
