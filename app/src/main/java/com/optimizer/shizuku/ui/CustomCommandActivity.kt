@@ -72,12 +72,12 @@ class CustomCommandActivity : AppCompatActivity() {
         val command = binding.etCommand.text?.toString()?.trim()
         
         if (command.isNullOrEmpty()) {
-            Toast.makeText(this, "Please enter a command", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Vui lòng nhập lệnh", Toast.LENGTH_SHORT).show()
             return
         }
 
         if (!ShizukuHelper.hasShizukuPermission()) {
-            Toast.makeText(this, "Shizuku permission not granted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Chưa cấp quyền Shizuku", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -101,10 +101,10 @@ class CustomCommandActivity : AppCompatActivity() {
                     if (result.output.isNotEmpty()) {
                         outputText.append(result.output)
                     } else {
-                        outputText.append("(Command executed successfully with no output)")
+                        outputText.append("(Thực thi lệnh thành công, không có kết quả)")
                     }
                 } else {
-                    outputText.append("ERROR:\n")
+                    outputText.append("LỖI:\n")
                     outputText.append(result.error)
                 }
 

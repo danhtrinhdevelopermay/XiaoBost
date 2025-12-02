@@ -142,11 +142,11 @@ object ShizukuHelper {
     fun executeCommand(command: String): CommandResult {
         return try {
             if (!isBinderAlive()) {
-                return CommandResult(false, "", "Shizuku is not running")
+                return CommandResult(false, "", "Shizuku chưa chạy")
             }
             
             if (!hasShizukuPermission()) {
-                return CommandResult(false, "", "Shizuku permission not granted")
+                return CommandResult(false, "", "Chưa cấp quyền Shizuku")
             }
 
             val normalizedCommand = command.lines()
@@ -183,7 +183,7 @@ object ShizukuHelper {
                 CommandResult(false, output.toString().trim(), error.toString().trim())
             }
         } catch (e: Exception) {
-            CommandResult(false, "", "Error: ${e.message}")
+            CommandResult(false, "", "Lỗi: ${e.message}")
         }
     }
 

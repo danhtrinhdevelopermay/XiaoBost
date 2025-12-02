@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
     private val requestPermissionResultListener = Shizuku.OnRequestPermissionResultListener { _, grantResult ->
         if (grantResult == PackageManager.PERMISSION_GRANTED) {
             updateShizukuStatus()
-            Toast.makeText(this, "Shizuku permission granted!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Đã cấp quyền Shizuku!", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Shizuku permission denied", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Quyền Shizuku bị từ chối", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -117,11 +117,11 @@ class MainActivity : AppCompatActivity() {
                     if (ShizukuHelper.canRequestPermission()) {
                         ShizukuHelper.requestShizukuPermission()
                     } else {
-                        Toast.makeText(this, "Cannot request permission", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Không thể yêu cầu quyền", Toast.LENGTH_SHORT).show()
                     }
                 }
                 ShizukuHelper.ShizukuState.READY -> {
-                    Toast.makeText(this, "Already connected!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Đã kết nối rồi!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnCustomCommand.setOnClickListener {
             it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             if (!ShizukuHelper.hasShizukuPermission()) {
-                Toast.makeText(this, "Please grant Shizuku permission first", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Vui lòng cấp quyền Shizuku trước", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             startActivity(Intent(this, CustomCommandActivity::class.java))
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnBackgroundApps.setOnClickListener {
             it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.button_pulse))
             if (!ShizukuHelper.hasShizukuPermission()) {
-                Toast.makeText(this, "Please grant Shizuku permission first", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Vui lòng cấp quyền Shizuku trước", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             startActivity(Intent(this, BackgroundAppsActivity::class.java))
@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
             binding.apply {
                 when (state) {
                     ShizukuHelper.ShizukuState.NOT_INSTALLED -> {
-                        tvShizukuStatus.text = "Shizuku is not installed"
+                        tvShizukuStatus.text = "Shizuku chưa được cài đặt"
                         tvShizukuStatus.setTextColor(getColor(R.color.error_red))
                         statusIcon.setImageResource(R.drawable.ic_error_neon)
                         statusContainer.setBackgroundResource(R.drawable.bg_card_status_error)
@@ -177,7 +177,7 @@ class MainActivity : AppCompatActivity() {
                         cardWarning.visibility = View.VISIBLE
                     }
                     ShizukuHelper.ShizukuState.INSTALLED_NOT_RUNNING -> {
-                        tvShizukuStatus.text = "Shizuku installed but not running"
+                        tvShizukuStatus.text = "Shizuku đã cài nhưng chưa chạy"
                         tvShizukuStatus.setTextColor(getColor(R.color.error_red))
                         statusIcon.setImageResource(R.drawable.ic_error_neon)
                         statusContainer.setBackgroundResource(R.drawable.bg_card_status_error)
@@ -186,7 +186,7 @@ class MainActivity : AppCompatActivity() {
                         cardWarning.visibility = View.VISIBLE
                     }
                     ShizukuHelper.ShizukuState.RUNNING_NO_PERMISSION -> {
-                        tvShizukuStatus.text = "Shizuku running - Permission required"
+                        tvShizukuStatus.text = "Shizuku đang chạy - Cần cấp quyền"
                         tvShizukuStatus.setTextColor(getColor(R.color.warning_yellow))
                         statusIcon.setImageResource(R.drawable.ic_warning_neon)
                         statusContainer.setBackgroundResource(R.drawable.bg_card_status_warning)
@@ -196,8 +196,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     ShizukuHelper.ShizukuState.READY -> {
                         val isRootMode = ShizukuHelper.isRootMode()
-                        val modeText = if (isRootMode) "Root Mode" else "ADB Mode"
-                        tvShizukuStatus.text = "TURBO CONNECTED ($modeText)"
+                        val modeText = if (isRootMode) "Chế Độ Root" else "Chế Độ ADB"
+                        tvShizukuStatus.text = "TURBO ĐÃ KẾT NỐI ($modeText)"
                         tvShizukuStatus.setTextColor(getColor(R.color.success_green))
                         statusIcon.setImageResource(R.drawable.ic_check_neon)
                         statusContainer.setBackgroundResource(R.drawable.bg_card_status_success)
@@ -215,10 +215,10 @@ class MainActivity : AppCompatActivity() {
         
         if (state != ShizukuHelper.ShizukuState.READY) {
             val message = when (state) {
-                ShizukuHelper.ShizukuState.NOT_INSTALLED -> "Please install Shizuku first"
-                ShizukuHelper.ShizukuState.INSTALLED_NOT_RUNNING -> "Please start Shizuku first"
-                ShizukuHelper.ShizukuState.RUNNING_NO_PERMISSION -> "Please grant Shizuku permission first"
-                else -> "Shizuku is not ready"
+                ShizukuHelper.ShizukuState.NOT_INSTALLED -> "Vui lòng cài đặt Shizuku trước"
+                ShizukuHelper.ShizukuState.INSTALLED_NOT_RUNNING -> "Vui lòng khởi động Shizuku trước"
+                ShizukuHelper.ShizukuState.RUNNING_NO_PERMISSION -> "Vui lòng cấp quyền Shizuku trước"
+                else -> "Shizuku chưa sẵn sàng"
             }
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
             return
@@ -226,12 +226,12 @@ class MainActivity : AppCompatActivity() {
 
         if (command.requiresRoot && !ShizukuHelper.isRootMode()) {
             MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
-                .setTitle("Root Required")
-                .setMessage("This command requires root access. Shizuku is running in ADB mode.\n\nDo you want to try anyway?")
-                .setPositiveButton("Try Anyway") { _, _ ->
+                .setTitle("Cần Root")
+                .setMessage("Lệnh này cần quyền root. Shizuku đang chạy ở chế độ ADB.\n\nBạn có muốn thử không?")
+                .setPositiveButton("Thử Anyway") { _, _ ->
                     checkWarningAndRun(command)
                 }
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Hủy", null)
                 .show()
             return
         }
@@ -242,12 +242,12 @@ class MainActivity : AppCompatActivity() {
     private fun checkWarningAndRun(command: OptimizationCommands.OptimizationCommand) {
         if (command.warning != null) {
             MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
-                .setTitle("Warning")
-                .setMessage(command.warning + "\n\nDo you want to continue?")
-                .setPositiveButton("Continue") { _, _ ->
+                .setTitle("Cảnh Báo")
+                .setMessage(command.warning + "\n\nBạn có muốn tiếp tục không?")
+                .setPositiveButton("Tiếp Tục") { _, _ ->
                     runCommand(command)
                 }
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Hủy", null)
                 .show()
         } else {
             runCommand(command)
@@ -270,12 +270,12 @@ class MainActivity : AppCompatActivity() {
     private fun showResultDialog(commandName: String, result: CommandResult) {
         val message = if (result.success) {
             if (result.output.isNotEmpty()) {
-                "Command executed successfully!\n\nOutput:\n${result.output}"
+                "Thực thi lệnh thành công!\n\nKết quả:\n${result.output}"
             } else {
-                "Command executed successfully!"
+                "Thực thi lệnh thành công!"
             }
         } else {
-            "Command failed!\n\nError:\n${result.error}"
+            "Thực thi lệnh thất bại!\n\nLỗi:\n${result.error}"
         }
 
         MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
@@ -289,19 +289,19 @@ class MainActivity : AppCompatActivity() {
         val isInstalled = ShizukuHelper.isShizukuInstalled(this)
         
         val message = if (isInstalled) {
-            "Shizuku is installed but not running. Please start Shizuku first.\n\nYou can start Shizuku via:\n1. Wireless Debugging (Android 11+)\n2. ADB over USB\n3. Root (if device is rooted)"
+            "Shizuku đã được cài đặt nhưng chưa chạy. Vui lòng khởi động Shizuku trước.\n\nBạn có thể khởi động Shizuku qua:\n1. Gỡ lỗi không dây (Android 11+)\n2. ADB qua USB\n3. Root (nếu thiết bị đã root)"
         } else {
-            "Shizuku is not installed. Please install Shizuku to use this app.\n\nShizuku allows apps to run shell commands with elevated permissions without root."
+            "Shizuku chưa được cài đặt. Vui lòng cài đặt Shizuku để sử dụng ứng dụng này.\n\nShizuku cho phép ứng dụng chạy lệnh shell với quyền nâng cao mà không cần root."
         }
 
         MaterialAlertDialogBuilder(this, R.style.GamingDialogTheme)
-            .setTitle(if (isInstalled) "Shizuku Not Running" else "Install Shizuku")
+            .setTitle(if (isInstalled) "Shizuku Chưa Chạy" else "Cài Đặt Shizuku")
             .setMessage(message)
-            .setPositiveButton("Download Shizuku") { _, _ ->
+            .setPositiveButton("Tải Shizuku") { _, _ ->
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://shizuku.rikka.app/download/"))
                 startActivity(intent)
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton("Hủy", null)
             .show()
     }
 

@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Shizuku Optimizer</string>
+    <string name="app_name">Trình Tối Ưu Shizuku</string>
     
     <!-- Tabs -->
-    <string name="tab_performance">Performance</string>
-    <string name="tab_battery">Battery</string>
+    <string name="tab_performance">Hiệu Năng</string>
+    <string name="tab_battery">Pin</string>
     <string name="tab_ram">RAM</string>
     <string name="tab_gaming">Gaming</string>
-    <string name="tab_general">General</string>
+    <string name="tab_general">Chung</string>
     
     <!-- Status -->
-    <string name="checking_shizuku">Checking Shizuku status…</string>
-    <string name="shizuku_not_running">Shizuku is not running</string>
-    <string name="shizuku_running">Shizuku is running</string>
-    <string name="permission_required">Permission required</string>
-    <string name="status_icon">Status Icon</string>
+    <string name="checking_shizuku">Đang kiểm tra trạng thái Shizuku…</string>
+    <string name="shizuku_not_running">Shizuku chưa chạy</string>
+    <string name="shizuku_running">Shizuku đang chạy</string>
+    <string name="permission_required">Cần cấp quyền</string>
+    <string name="status_icon">Biểu tượng trạng thái</string>
     
     <!-- Buttons -->
-    <string name="request_permission">Request Permission</string>
-    <string name="download_shizuku">Download Shizuku</string>
-    <string name="custom_command">Run Custom Command</string>
-    <string name="run">Run</string>
-    <string name="execute">Execute</string>
-    <string name="clear">Clear</string>
+    <string name="request_permission">Yêu Cầu Quyền</string>
+    <string name="download_shizuku">Tải Shizuku</string>
+    <string name="custom_command">Chạy Lệnh Tùy Chỉnh</string>
+    <string name="run">Chạy</string>
+    <string name="execute">Thực Thi</string>
+    <string name="clear">Xóa</string>
     <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="confirm">Confirm</string>
+    <string name="cancel">Hủy</string>
+    <string name="confirm">Xác Nhận</string>
     
     <!-- Custom Command -->
-    <string name="enter_command">Enter shell command</string>
-    <string name="quick_commands">Quick Commands</string>
-    <string name="previous_command">Previous Command</string>
-    <string name="next_command">Next Command</string>
-    <string name="output_hint">Output will appear here…</string>
+    <string name="enter_command">Nhập lệnh shell</string>
+    <string name="quick_commands">Lệnh Nhanh</string>
+    <string name="previous_command">Lệnh Trước</string>
+    <string name="next_command">Lệnh Sau</string>
+    <string name="output_hint">Kết quả sẽ hiển thị ở đây…</string>
     
     <!-- Warnings -->
-    <string name="shizuku_warning">Shizuku is not running. Please start Shizuku first to use optimization features.\n\nYou can start Shizuku via:\n• Wireless Debugging (Android 11+)\n• ADB over USB\n• Root (if device is rooted)</string>
-    <string name="requires_root">Requires Root</string>
+    <string name="shizuku_warning">Shizuku chưa chạy. Vui lòng khởi động Shizuku trước để sử dụng các tính năng tối ưu.\n\nBạn có thể khởi động Shizuku qua:\n• Gỡ lỗi không dây (Android 11+)\n• ADB qua USB\n• Root (nếu thiết bị đã root)</string>
+    <string name="requires_root">Cần Root</string>
     
     <!-- Background Apps Manager -->
-    <string name="background_apps">Background Apps</string>
-    <string name="background_apps_title">Manage Background Apps</string>
-    <string name="background_apps_description">Select apps to disable or enable background activity.</string>
-    <string name="system_app">System</string>
-    <string name="app_icon">App icon</string>
-    <string name="select_all">Select All</string>
-    <string name="deselect_all">Deselect All</string>
-    <string name="selected_count">Selected: %d apps</string>
-    <string name="selected_count_default">Selected: 0 apps</string>
-    <string name="disable_background">Disable Background</string>
-    <string name="enable_background">Enable Background</string>
-    <string name="no_apps_selected">Please select at least one app</string>
-    <string name="shizuku_permission_required">Please grant Shizuku permission first</string>
-    <string name="confirm_disable_background">Disable background activity for %d selected apps?\n\nThese apps will not be able to run in the background.</string>
-    <string name="confirm_enable_background">Enable background activity for %d selected apps?\n\nThese apps will be able to run in the background.</string>
-    <string name="result">Result</string>
-    <string name="disabled">disabled</string>
-    <string name="enabled">enabled</string>
-    <string name="background_result">Background activity %s:\n\nSuccess: %d apps\nFailed: %d apps</string>
-    <string name="no_third_party_apps">No third-party apps found</string>
+    <string name="background_apps">Ứng Dụng Nền</string>
+    <string name="background_apps_title">Quản Lý Ứng Dụng Nền</string>
+    <string name="background_apps_description">Chọn ứng dụng để tắt hoặc bật hoạt động nền.</string>
+    <string name="system_app">Hệ thống</string>
+    <string name="app_icon">Biểu tượng ứng dụng</string>
+    <string name="select_all">Chọn Tất Cả</string>
+    <string name="deselect_all">Bỏ Chọn Tất Cả</string>
+    <string name="selected_count">Đã chọn: %d ứng dụng</string>
+    <string name="selected_count_default">Đã chọn: 0 ứng dụng</string>
+    <string name="disable_background">Tắt Hoạt Động Nền</string>
+    <string name="enable_background">Bật Hoạt Động Nền</string>
+    <string name="no_apps_selected">Vui lòng chọn ít nhất một ứng dụng</string>
+    <string name="shizuku_permission_required">Vui lòng cấp quyền Shizuku trước</string>
+    <string name="confirm_disable_background">Tắt hoạt động nền cho %d ứng dụng đã chọn?\n\nCác ứng dụng này sẽ không thể chạy ngầm.</string>
+    <string name="confirm_enable_background">Bật hoạt động nền cho %d ứng dụng đã chọn?\n\nCác ứng dụng này sẽ có thể chạy ngầm.</string>
+    <string name="result">Kết Quả</string>
+    <string name="disabled">đã tắt</string>
+    <string name="enabled">đã bật</string>
+    <string name="background_result">Hoạt động nền %s:\n\nThành công: %d ứng dụng\nThất bại: %d ứng dụng</string>
+    <string name="no_third_party_apps">Không tìm thấy ứng dụng bên thứ ba</string>
 </resources>

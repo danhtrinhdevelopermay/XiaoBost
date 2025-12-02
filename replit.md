@@ -3,6 +3,12 @@
 ## Overview
 Ứng dụng Android Kotlin sử dụng Shizuku API để chạy các lệnh shell tối ưu hóa hiệu suất điện thoại. Ứng dụng cho phép người dùng chạy các lệnh shell có sẵn hoặc tùy chỉnh thông qua Shizuku.
 
+## Ngôn Ngữ Ứng Dụng
+**Tiếng Việt** - Toàn bộ giao diện ứng dụng đã được Việt hóa hoàn toàn, bao gồm:
+- Tất cả chuỗi văn bản trong strings.xml
+- Tên và mô tả các lệnh tối ưu trong OptimizationCommands.kt
+- Thông báo Toast và Dialog trong các Activity
+
 ## UI Design - Gaming Turbo Style
 Giao diện được thiết kế theo phong cách gaming turbo sang trọng với:
 
@@ -62,6 +68,7 @@ Giao diện được thiết kế theo phong cách gaming turbo sang trọng v�
 │   │   │   │   └── slide_*.xml
 │   │   │   └── values/
 │   │   │       ├── colors.xml (Gaming color palette)
+│   │   │       ├── strings.xml (Tiếng Việt)
 │   │   │       ├── themes.xml (Dark gaming theme)
 │   │   │       └── styles.xml (Gaming styles)
 │   │   └── AndroidManifest.xml
@@ -83,6 +90,7 @@ Giao diện được thiết kế theo phong cách gaming turbo sang trọng v�
 
 ### OptimizationCommands.kt
 - Performance, Battery, RAM, Gaming, General commands
+- Tất cả tên và mô tả lệnh bằng tiếng Việt
 - Cảnh báo cho lệnh nguy hiểm
 
 ### BackgroundAppsActivity.kt
@@ -115,8 +123,12 @@ Giao diện được thiết kế theo phong cách gaming turbo sang trọng v�
   - Terminal style với macOS window controls
   - Gaming-style icons và badges
   - Pulse và fade animations
+- 2025-12-02: **Việt hóa toàn bộ ứng dụng**:
+  - Dịch strings.xml sang tiếng Việt
+  - Dịch tên và mô tả lệnh trong OptimizationCommands.kt
+  - Dịch các thông báo Toast và Dialog trong MainActivity.kt và CustomCommandActivity.kt
 
 ## User Preferences
-- Language: Vietnamese
+- Language: Vietnamese (Tiếng Việt)
 - Build system: GitHub Actions
 - UI Style: Gaming Turbo / Neon Dark Theme
