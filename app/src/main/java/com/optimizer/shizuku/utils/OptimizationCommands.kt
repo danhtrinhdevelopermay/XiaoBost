@@ -82,15 +82,15 @@ object OptimizationCommands {
         OptimizationCommand(
             id = "perf_xiaomi_speed_mode",
             name = "Xiaomi Speed Mode (Enable)",
-            description = "Enable Xiaomi Speed Mode for maximum performance (Xiaomi/MIUI only)",
-            command = "settings put secure speed_mode_enable 1",
+            description = "Enable Xiaomi Speed Mode for maximum performance (Xiaomi/MIUI/HyperOS only)",
+            command = "settings put secure speed_mode_enable 1 && settings put system speed_mode 1 && settings put global speed_mode_on 1",
             category = Category.PERFORMANCE
         ),
         OptimizationCommand(
             id = "perf_xiaomi_speed_mode_off",
             name = "Xiaomi Speed Mode (Disable)",
-            description = "Disable Xiaomi Speed Mode (Xiaomi/MIUI only)",
-            command = "settings put secure speed_mode_enable 0",
+            description = "Disable Xiaomi Speed Mode (Xiaomi/MIUI/HyperOS only)",
+            command = "settings put secure speed_mode_enable 0 && settings put system speed_mode 0 && settings put global speed_mode_on 0",
             category = Category.PERFORMANCE
         ),
         OptimizationCommand(
@@ -230,7 +230,7 @@ object OptimizationCommands {
             id = "game_xiaomi_max",
             name = "Xiaomi Gaming Mode MAX",
             description = "Enable all Xiaomi performance settings for gaming",
-            command = "settings put secure speed_mode_enable 1 && settings put global power_mode 2 && settings put global powercfg_enable 0 && settings put global animator_duration_scale 0.0 && settings put global transition_animation_scale 0.0 && settings put global window_animation_scale 0.0 && settings put global disable_window_blurs 1 && am kill-all",
+            command = "settings put secure speed_mode_enable 1 && settings put system speed_mode 1 && settings put global speed_mode_on 1 && settings put global power_mode 2 && settings put global powercfg_enable 0 && settings put global animator_duration_scale 0.0 && settings put global transition_animation_scale 0.0 && settings put global window_animation_scale 0.0 && settings put global disable_window_blurs 1 && am kill-all",
             category = Category.GAMING,
             warning = "This will enable Speed Mode, High Power Mode, disable power limits and kill all background apps. May cause increased heat."
         ),
@@ -238,7 +238,7 @@ object OptimizationCommands {
             id = "game_xiaomi_restore",
             name = "Xiaomi Gaming Mode OFF",
             description = "Disable all Xiaomi gaming performance settings",
-            command = "settings put secure speed_mode_enable 0 && settings put global power_mode 0 && settings put global powercfg_enable 1 && settings put global animator_duration_scale 1.0 && settings put global transition_animation_scale 1.0 && settings put global window_animation_scale 1.0 && settings put global disable_window_blurs 0",
+            command = "settings put secure speed_mode_enable 0 && settings put system speed_mode 0 && settings put global speed_mode_on 0 && settings put global power_mode 0 && settings put global powercfg_enable 1 && settings put global animator_duration_scale 1.0 && settings put global transition_animation_scale 1.0 && settings put global window_animation_scale 1.0 && settings put global disable_window_blurs 0",
             category = Category.GAMING
         )
     )
