@@ -1,0 +1,170 @@
+2025-12-02T04:58:27.8057230Z Current runner version: '2.329.0'
+2025-12-02T04:58:27.8081083Z ##[group]Runner Image Provisioner
+2025-12-02T04:58:27.8081831Z Hosted Compute Agent
+2025-12-02T04:58:27.8082370Z Version: 20251016.436
+2025-12-02T04:58:27.8082938Z Commit: 8ab8ac8bfd662a3739dab9fe09456aba92132568
+2025-12-02T04:58:27.8083551Z Build Date: 2025-10-15T20:44:12Z
+2025-12-02T04:58:27.8084349Z ##[endgroup]
+2025-12-02T04:58:27.8084847Z ##[group]Operating System
+2025-12-02T04:58:27.8085370Z Ubuntu
+2025-12-02T04:58:27.8085774Z 24.04.3
+2025-12-02T04:58:27.8086230Z LTS
+2025-12-02T04:58:27.8086611Z ##[endgroup]
+2025-12-02T04:58:27.8087047Z ##[group]Runner Image
+2025-12-02T04:58:27.8087581Z Image: ubuntu-24.04
+2025-12-02T04:58:27.8088012Z Version: 20251112.124.1
+2025-12-02T04:58:27.8088901Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20251112.124/images/ubuntu/Ubuntu2404-Readme.md
+2025-12-02T04:58:27.8090291Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20251112.124
+2025-12-02T04:58:27.8091120Z ##[endgroup]
+2025-12-02T04:58:27.8092161Z ##[group]GITHUB_TOKEN Permissions
+2025-12-02T04:58:27.8094435Z Contents: read
+2025-12-02T04:58:27.8094984Z Metadata: read
+2025-12-02T04:58:27.8095402Z Packages: read
+2025-12-02T04:58:27.8095860Z ##[endgroup]
+2025-12-02T04:58:27.8097923Z Secret source: Actions
+2025-12-02T04:58:27.8098569Z Prepare workflow directory
+2025-12-02T04:58:27.8465427Z Prepare all required actions
+2025-12-02T04:58:27.8504729Z Getting action download info
+2025-12-02T04:58:28.2627934Z Download action repository 'actions/checkout@v4' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2025-12-02T04:58:29.0657541Z Download action repository 'actions/setup-java@v4' (SHA:c5195efecf7bdfc987ee8bae7a71cb8b11521c00)
+2025-12-02T04:58:29.9787257Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2025-12-02T04:58:30.1428885Z Complete job name: Build Debug APK
+2025-12-02T04:58:30.2049413Z ##[group]Run actions/checkout@v4
+2025-12-02T04:58:30.2050162Z with:
+2025-12-02T04:58:30.2050661Z   repository: danhtrinhdevelopermay/XiaoBost
+2025-12-02T04:58:30.2051354Z   token: ***
+2025-12-02T04:58:30.2051710Z   ssh-strict: true
+2025-12-02T04:58:30.2052132Z   ssh-user: git
+2025-12-02T04:58:30.2052467Z   persist-credentials: true
+2025-12-02T04:58:30.2052850Z   clean: true
+2025-12-02T04:58:30.2053223Z   sparse-checkout-cone-mode: true
+2025-12-02T04:58:30.2053661Z   fetch-depth: 1
+2025-12-02T04:58:30.2054518Z   fetch-tags: false
+2025-12-02T04:58:30.2054930Z   show-progress: true
+2025-12-02T04:58:30.2055325Z   lfs: false
+2025-12-02T04:58:30.2055697Z   submodules: false
+2025-12-02T04:58:30.2056036Z   set-safe-directory: true
+2025-12-02T04:58:30.2056818Z ##[endgroup]
+2025-12-02T04:58:30.3141987Z Syncing repository: danhtrinhdevelopermay/XiaoBost
+2025-12-02T04:58:30.3144149Z ##[group]Getting Git version info
+2025-12-02T04:58:30.3144915Z Working directory is '/home/runner/work/XiaoBost/XiaoBost'
+2025-12-02T04:58:30.3145938Z [command]/usr/bin/git version
+2025-12-02T04:58:30.3178960Z git version 2.51.2
+2025-12-02T04:58:30.3203615Z ##[endgroup]
+2025-12-02T04:58:30.3219367Z Temporarily overriding HOME='/home/runner/work/_temp/5a8297e7-2fe3-449e-9a90-7f3fbf37744e' before making global git config changes
+2025-12-02T04:58:30.3221773Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-02T04:58:30.3235295Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/XiaoBost/XiaoBost
+2025-12-02T04:58:30.3267744Z Deleting the contents of '/home/runner/work/XiaoBost/XiaoBost'
+2025-12-02T04:58:30.3271951Z ##[group]Initializing the repository
+2025-12-02T04:58:30.3409731Z [command]/usr/bin/git init /home/runner/work/XiaoBost/XiaoBost
+2025-12-02T04:58:30.3411688Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-12-02T04:58:30.3412379Z hint: is subject to change. To configure the initial branch name to use in all
+2025-12-02T04:58:30.3413183Z hint: of your new repositories, which will suppress this warning, call:
+2025-12-02T04:58:30.3414504Z hint:
+2025-12-02T04:58:30.3415130Z hint: 	git config --global init.defaultBranch <name>
+2025-12-02T04:58:30.3415827Z hint:
+2025-12-02T04:58:30.3416479Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-12-02T04:58:30.3417789Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-12-02T04:58:30.3418278Z hint:
+2025-12-02T04:58:30.3418600Z hint: 	git branch -m <name>
+2025-12-02T04:58:30.3419032Z hint:
+2025-12-02T04:58:30.3419462Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-12-02T04:58:30.3424457Z Initialized empty Git repository in /home/runner/work/XiaoBost/XiaoBost/.git/
+2025-12-02T04:58:30.3426327Z [command]/usr/bin/git remote add origin https://github.com/danhtrinhdevelopermay/XiaoBost
+2025-12-02T04:58:30.3427473Z ##[endgroup]
+2025-12-02T04:58:30.3428029Z ##[group]Disabling automatic garbage collection
+2025-12-02T04:58:30.3430410Z [command]/usr/bin/git config --local gc.auto 0
+2025-12-02T04:58:30.3454732Z ##[endgroup]
+2025-12-02T04:58:30.3455253Z ##[group]Setting up auth
+2025-12-02T04:58:30.3461179Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-02T04:58:30.3485548Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-02T04:58:30.3760652Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-02T04:58:30.3788755Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-02T04:58:30.3967888Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-02T04:58:30.3995379Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-02T04:58:30.4187202Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-12-02T04:58:30.4218966Z ##[endgroup]
+2025-12-02T04:58:30.4220013Z ##[group]Fetching the repository
+2025-12-02T04:58:30.4229542Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +3c54ed75d1d2ef763ac3b8fa616fe4bd6db7fe18:refs/remotes/origin/main
+2025-12-02T04:58:30.8163002Z From https://github.com/danhtrinhdevelopermay/XiaoBost
+2025-12-02T04:58:30.8163664Z  * [new ref]         3c54ed75d1d2ef763ac3b8fa616fe4bd6db7fe18 -> origin/main
+2025-12-02T04:58:30.8191565Z ##[endgroup]
+2025-12-02T04:58:30.8192385Z ##[group]Determining the checkout info
+2025-12-02T04:58:30.8193262Z ##[endgroup]
+2025-12-02T04:58:30.8198885Z [command]/usr/bin/git sparse-checkout disable
+2025-12-02T04:58:30.8234096Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-12-02T04:58:30.8256180Z ##[group]Checking out the ref
+2025-12-02T04:58:30.8259695Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-12-02T04:58:30.8322273Z Switched to a new branch 'main'
+2025-12-02T04:58:30.8323123Z branch 'main' set up to track 'origin/main'.
+2025-12-02T04:58:30.8329046Z ##[endgroup]
+2025-12-02T04:58:30.8362843Z [command]/usr/bin/git log -1 --format=%H
+2025-12-02T04:58:30.8382292Z 3c54ed75d1d2ef763ac3b8fa616fe4bd6db7fe18
+2025-12-02T04:58:30.8610461Z ##[group]Run actions/setup-java@v4
+2025-12-02T04:58:30.8610842Z with:
+2025-12-02T04:58:30.8611145Z   distribution: zulu
+2025-12-02T04:58:30.8611480Z   java-version: 17
+2025-12-02T04:58:30.8611769Z   cache: gradle
+2025-12-02T04:58:30.8612069Z   java-package: jdk
+2025-12-02T04:58:30.8612352Z   check-latest: false
+2025-12-02T04:58:30.8612647Z   server-id: github
+2025-12-02T04:58:30.8612936Z   server-username: GITHUB_ACTOR
+2025-12-02T04:58:30.8613298Z   server-password: GITHUB_TOKEN
+2025-12-02T04:58:30.8613627Z   overwrite-settings: true
+2025-12-02T04:58:30.8614450Z   job-status: success
+2025-12-02T04:58:30.8614972Z   token: ***
+2025-12-02T04:58:30.8615240Z ##[endgroup]
+2025-12-02T04:58:31.0497567Z ##[group]Installed distributions
+2025-12-02T04:58:31.0524501Z Trying to resolve the latest version from remote
+2025-12-02T04:58:31.1660688Z Resolved latest version as 17.0.17+10
+2025-12-02T04:58:31.1661403Z Trying to download...
+2025-12-02T04:58:31.1662274Z Downloading Java 17.0.17+10 (Zulu) from https://cdn.azul.com/zulu/bin/zulu17.62.19-ca-crac-jdk17.0.17-linux_x64.tar.gz ...
+2025-12-02T04:58:32.9287448Z Extracting Java archive...
+2025-12-02T04:58:32.9380763Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/8db81f35-5b47-4db8-a76a-477dbff602a2 -f /home/runner/work/_temp/6d3e6dfa-5f9b-4842-bd40-bda3842c9dc6
+2025-12-02T04:58:35.7647409Z Java 17.0.17+10 was downloaded
+2025-12-02T04:58:35.7648034Z Setting Java 17.0.17+10 as the default
+2025-12-02T04:58:35.7649500Z Creating toolchains.xml for JDK version 17 from zulu
+2025-12-02T04:58:35.7719904Z Writing to /home/runner/.m2/toolchains.xml
+2025-12-02T04:58:35.7720350Z 
+2025-12-02T04:58:35.7720483Z Java configuration:
+2025-12-02T04:58:35.7720842Z   Distribution: zulu
+2025-12-02T04:58:35.7721185Z   Version: 17.0.17+10
+2025-12-02T04:58:35.7721690Z   Path: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.17-10/x64
+2025-12-02T04:58:35.7722028Z 
+2025-12-02T04:58:35.7722969Z ##[endgroup]
+2025-12-02T04:58:35.7738665Z Creating settings.xml with server-id: github
+2025-12-02T04:58:35.7739137Z Writing to /home/runner/.m2/settings.xml
+2025-12-02T04:58:36.0872434Z gradle cache is not found
+2025-12-02T04:58:36.1016045Z ##[group]Run chmod +x ./gradlew
+2025-12-02T04:58:36.1016423Z [36;1mchmod +x ./gradlew[0m
+2025-12-02T04:58:36.1043455Z shell: /usr/bin/bash -e {0}
+2025-12-02T04:58:36.1043731Z env:
+2025-12-02T04:58:36.1044250Z   JAVA_HOME: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.17-10/x64
+2025-12-02T04:58:36.1044639Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.17-10/x64
+2025-12-02T04:58:36.1044990Z ##[endgroup]
+2025-12-02T04:58:36.1145269Z ##[group]Run ./gradlew assembleDebug
+2025-12-02T04:58:36.1145593Z [36;1m./gradlew assembleDebug[0m
+2025-12-02T04:58:36.1165748Z shell: /usr/bin/bash -e {0}
+2025-12-02T04:58:36.1166006Z env:
+2025-12-02T04:58:36.1166259Z   JAVA_HOME: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.17-10/x64
+2025-12-02T04:58:36.1166647Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Zulu_jdk/17.0.17-10/x64
+2025-12-02T04:58:36.1167198Z ##[endgroup]
+2025-12-02T04:58:36.1627572Z Error: Could not find or load main class org.gradle.wrapper.GradleWrapperMain
+2025-12-02T04:58:36.1628489Z Caused by: java.lang.ClassNotFoundException: org.gradle.wrapper.GradleWrapperMain
+2025-12-02T04:58:36.1670419Z ##[error]Process completed with exit code 1.
+2025-12-02T04:58:36.1772698Z Post job cleanup.
+2025-12-02T04:58:36.3452859Z Post job cleanup.
+2025-12-02T04:58:36.4336155Z [command]/usr/bin/git version
+2025-12-02T04:58:36.4369402Z git version 2.51.2
+2025-12-02T04:58:36.4410310Z Temporarily overriding HOME='/home/runner/work/_temp/51f273d6-b294-4ec9-80d7-cf78f428d2e4' before making global git config changes
+2025-12-02T04:58:36.4411633Z Adding repository directory to the temporary git global config as a safe directory
+2025-12-02T04:58:36.4425944Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/XiaoBost/XiaoBost
+2025-12-02T04:58:36.4458423Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-12-02T04:58:36.4488062Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-12-02T04:58:36.4673560Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-12-02T04:58:36.4692651Z http.https://github.com/.extraheader
+2025-12-02T04:58:36.4704475Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-12-02T04:58:36.4731608Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-12-02T04:58:36.4908657Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2025-12-02T04:58:36.4938113Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2025-12-02T04:58:36.5204939Z Cleaning up orphan processes
