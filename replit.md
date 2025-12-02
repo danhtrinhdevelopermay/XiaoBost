@@ -1,4 +1,4 @@
-# Shizuku Optimizer - Android Kotlin Project
+# XiaoBost - Android Kotlin Project
 
 ## Overview
 Ứng dụng Android Kotlin sử dụng Shizuku API để chạy các lệnh shell tối ưu hóa hiệu suất điện thoại. Ứng dụng cho phép người dùng chạy các lệnh shell có sẵn hoặc tùy chỉnh thông qua Shizuku.
