@@ -38,6 +38,11 @@
             android:exported="false"
             android:theme="@style/Theme.ShizukuOptimizer" />
 
+        <activity
+            android:name=".ui.BackgroundAppsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.ShizukuOptimizer" />
+
     </application>
 
 </manifest>

@@ -23,6 +23,9 @@
     <string name="run">Run</string>
     <string name="execute">Execute</string>
     <string name="clear">Clear</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
     
     <!-- Custom Command -->
     <string name="enter_command">Enter shell command</string>
@@ -34,4 +37,25 @@
     <!-- Warnings -->
     <string name="shizuku_warning">Shizuku is not running. Please start Shizuku first to use optimization features.\n\nYou can start Shizuku via:\n• Wireless Debugging (Android 11+)\n• ADB over USB\n• Root (if device is rooted)</string>
     <string name="requires_root">Requires Root</string>
+    
+    <!-- Background Apps Manager -->
+    <string name="background_apps">Background Apps</string>
+    <string name="background_apps_title">Manage Background Apps</string>
+    <string name="background_apps_description">Select third-party apps to disable or enable background activity. System apps are not shown.</string>
+    <string name="app_icon">App icon</string>
+    <string name="select_all">Select All</string>
+    <string name="deselect_all">Deselect All</string>
+    <string name="selected_count">Selected: %d apps</string>
+    <string name="selected_count_default">Selected: 0 apps</string>
+    <string name="disable_background">Disable Background</string>
+    <string name="enable_background">Enable Background</string>
+    <string name="no_apps_selected">Please select at least one app</string>
+    <string name="shizuku_permission_required">Please grant Shizuku permission first</string>
+    <string name="confirm_disable_background">Disable background activity for %d selected apps?\n\nThese apps will not be able to run in the background.</string>
+    <string name="confirm_enable_background">Enable background activity for %d selected apps?\n\nThese apps will be able to run in the background.</string>
+    <string name="result">Result</string>
+    <string name="disabled">disabled</string>
+    <string name="enabled">enabled</string>
+    <string name="background_result">Background activity %s:\n\nSuccess: %d apps\nFailed: %d apps</string>
+    <string name="no_third_party_apps">No third-party apps found</string>
 </resources>

@@ -12,17 +12,24 @@
 │   │   │   ├── ui/
 │   │   │   │   ├── MainActivity.kt
 │   │   │   │   ├── CustomCommandActivity.kt
-│   │   │   │   └── CommandAdapter.kt
+│   │   │   │   ├── BackgroundAppsActivity.kt
+│   │   │   │   ├── CommandAdapter.kt
+│   │   │   │   └── AppListAdapter.kt
 │   │   │   └── utils/
 │   │   │       ├── ShizukuHelper.kt
 │   │   │       └── OptimizationCommands.kt
 │   │   ├── res/
+│   │   │   ├── layout/
+│   │   │   │   ├── activity_main.xml
+│   │   │   │   ├── activity_background_apps.xml
+│   │   │   │   ├── item_app.xml
+│   │   │   │   └── ...
 │   │   └── AndroidManifest.xml
 │   └── build.gradle.kts
-├── .github/workflows/
-│   ├── build-apk.yml
-│   └── release.yml
 ├── gradle/
+│   └── wrapper/
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
 ├── build.gradle.kts
 └── settings.gradle.kts
 ```
@@ -32,11 +39,17 @@
 ### ShizukuHelper.kt
 - State management với enum ShizukuState
 - Binder lifecycle management
-- Command execution với chaining
+- Command execution với reflection cho Shizuku 13.1.5+ (createShizukuProcess)
 
 ### OptimizationCommands.kt
 - Performance, Battery, RAM, Gaming, General commands
 - Cảnh báo cho lệnh nguy hiểm
+
+### BackgroundAppsActivity.kt
+- Quản lý ứng dụng chạy nền
+- Hiển thị danh sách ứng dụng bên thứ ba (không bao gồm app hệ thống)
+- Tắt/bật quyền chạy nền cho các app được chọn
+- Sử dụng lệnh: `cmd appops set <package> RUN_IN_BACKGROUND deny/allow`
 
 ## Build Instructions
 
@@ -51,8 +64,10 @@
 ```
 
 ## Recent Changes
-- 2024-12-02: Khởi tạo project
-- Di chuyển ra thư mục gốc để dễ push GitHub
+- 2025-12-02: Khởi tạo project
+- 2025-12-02: Sửa lỗi gradle-wrapper.jar thiếu
+- 2025-12-02: Sửa lỗi Shizuku.newProcess() private trong Shizuku 13.1.5 (dùng reflection)
+- 2025-12-02: Thêm tính năng quản lý ứng dụng chạy nền (BackgroundAppsActivity)
 
 ## User Preferences
 - Language: Vietnamese

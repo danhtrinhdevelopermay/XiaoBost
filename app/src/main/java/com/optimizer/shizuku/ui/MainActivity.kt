@@ -125,6 +125,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, CustomCommandActivity::class.java))
         }
 
+        binding.btnBackgroundApps.setOnClickListener {
+            if (!ShizukuHelper.hasShizukuPermission()) {
+                Toast.makeText(this, "Please grant Shizuku permission first", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            startActivity(Intent(this, BackgroundAppsActivity::class.java))
+        }
+
         binding.btnDownloadShizuku.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://shizuku.rikka.app/download/"))
             startActivity(intent)

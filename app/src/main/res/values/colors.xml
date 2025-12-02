@@ -26,4 +26,6 @@
     <color name="terminal_bg">#1E1E1E</color>
     <color name="terminal_text">#00FF00</color>
     <color name="terminal_hint">#666666</color>
+    
+    <color name="card_background">#FFFFFF</color>
 </resources>
