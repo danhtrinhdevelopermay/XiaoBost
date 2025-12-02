@@ -1,5 +1,6 @@
 package com.optimizer.shizuku.utils
 
+import android.content.Context
 import android.content.pm.PackageManager
 import rikka.shizuku.Shizuku
 import java.io.BufferedReader
@@ -8,17 +9,62 @@ import java.io.InputStreamReader
 object ShizukuHelper {
 
     private const val REQUEST_CODE_PERMISSION = 1001
+    private const val SHIZUKU_PACKAGE = "moe.shizuku.privileged.api"
 
-    fun isShizukuInstalled(): Boolean {
+    enum class ShizukuState {
+        NOT_INSTALLED,
+        INSTALLED_NOT_RUNNING,
+        RUNNING_NO_PERMISSION,
+        READY
+    }
+
+    private var binderReceivedListener: Shizuku.OnBinderReceivedListener? = null
+    private var binderDeadListener: Shizuku.OnBinderDeadListener? = null
+    private var statusCallback: ((ShizukuState) -> Unit)? = null
+
+    fun init(callback: ((ShizukuState) -> Unit)? = null) {
+        statusCallback = callback
+        
+        binderReceivedListener = Shizuku.OnBinderReceivedListener {
+            statusCallback?.invoke(getState(null))
+        }
+        
+        binderDeadListener = Shizuku.OnBinderDeadListener {
+            statusCallback?.invoke(getState(null))
+        }
+
+        try {
+            Shizuku.addBinderReceivedListener(binderReceivedListener!!)
+            Shizuku.addBinderDeadListener(binderDeadListener!!)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun cleanup() {
+        try {
+            binderReceivedListener?.let { Shizuku.removeBinderReceivedListener(it) }
+            binderDeadListener?.let { Shizuku.removeBinderDeadListener(it) }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        binderReceivedListener = null
+        binderDeadListener = null
+        statusCallback = null
+    }
+
+    fun isShizukuInstalled(context: Context): Boolean {
         return try {
-            Shizuku.pingBinder()
+            context.packageManager.getPackageInfo(SHIZUKU_PACKAGE, 0)
             true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
         } catch (e: Exception) {
             false
         }
     }
 
-    fun isShizukuRunning(): Boolean {
+    fun isBinderAlive(): Boolean {
         return try {
             Shizuku.pingBinder()
         } catch (e: Exception) {
@@ -28,6 +74,9 @@ object ShizukuHelper {
 
     fun hasShizukuPermission(): Boolean {
         return try {
+            if (!isBinderAlive()) {
+                return false
+            }
             if (Shizuku.isPreV11()) {
                 false
             } else {
@@ -38,23 +87,63 @@ object ShizukuHelper {
         }
     }
 
-    fun requestShizukuPermission() {
-        try {
-            if (!Shizuku.isPreV11()) {
-                Shizuku.requestPermission(REQUEST_CODE_PERMISSION)
+    fun getState(context: Context?): ShizukuState {
+        val isInstalled = context?.let { isShizukuInstalled(it) } ?: true
+        
+        if (!isInstalled) {
+            return ShizukuState.NOT_INSTALLED
+        }
+        
+        if (!isBinderAlive()) {
+            return ShizukuState.INSTALLED_NOT_RUNNING
+        }
+        
+        if (!hasShizukuPermission()) {
+            return ShizukuState.RUNNING_NO_PERMISSION
+        }
+        
+        return ShizukuState.READY
+    }
+
+    fun canRequestPermission(): Boolean {
+        return isBinderAlive() && !Shizuku.isPreV11()
+    }
+
+    fun requestShizukuPermission(): Boolean {
+        return try {
+            if (!isBinderAlive()) {
+                return false
             }
+            if (Shizuku.isPreV11()) {
+                return false
+            }
+            if (Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
+                return true
+            }
+            Shizuku.requestPermission(REQUEST_CODE_PERMISSION)
+            true
         } catch (e: Exception) {
             e.printStackTrace()
+            false
         }
     }
 
     fun executeCommand(command: String): CommandResult {
         return try {
+            if (!isBinderAlive()) {
+                return CommandResult(false, "", "Shizuku is not running")
+            }
+            
             if (!hasShizukuPermission()) {
                 return CommandResult(false, "", "Shizuku permission not granted")
             }
 
-            val process = Shizuku.newProcess(arrayOf("sh", "-c", command), null, null)
+            val normalizedCommand = command.lines()
+                .map { it.trim() }
+                .filter { it.isNotEmpty() }
+                .joinToString(" && ")
+
+            val process = Shizuku.newProcess(arrayOf("sh", "-c", normalizedCommand), null, null)
             
             val outputReader = BufferedReader(InputStreamReader(process.inputStream))
             val errorReader = BufferedReader(InputStreamReader(process.errorStream))
@@ -89,6 +178,9 @@ object ShizukuHelper {
 
     fun getShizukuUid(): Int {
         return try {
+            if (!isBinderAlive()) {
+                return -1
+            }
             Shizuku.getUid()
         } catch (e: Exception) {
             -1
@@ -97,6 +189,17 @@ object ShizukuHelper {
 
     fun isRootMode(): Boolean {
         return getShizukuUid() == 0
+    }
+
+    fun getShizukuVersion(): Int {
+        return try {
+            if (!isBinderAlive()) {
+                return -1
+            }
+            Shizuku.getVersion()
+        } catch (e: Exception) {
+            -1
+        }
     }
 }
 
