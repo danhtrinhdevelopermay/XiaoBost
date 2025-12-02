@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shizuku Optimizer</string>
+    
+    <!-- Tabs -->
+    <string name="tab_performance">Performance</string>
+    <string name="tab_battery">Battery</string>
+    <string name="tab_ram">RAM</string>
+    <string name="tab_gaming">Gaming</string>
+    <string name="tab_general">General</string>
+    
+    <!-- Status -->
+    <string name="checking_shizuku">Checking Shizuku status…</string>
+    <string name="shizuku_not_running">Shizuku is not running</string>
+    <string name="shizuku_running">Shizuku is running</string>
+    <string name="permission_required">Permission required</string>
+    <string name="status_icon">Status Icon</string>
+    
+    <!-- Buttons -->
+    <string name="request_permission">Request Permission</string>
+    <string name="download_shizuku">Download Shizuku</string>
+    <string name="custom_command">Run Custom Command</string>
+    <string name="run">Run</string>
+    <string name="execute">Execute</string>
+    <string name="clear">Clear</string>
+    
+    <!-- Custom Command -->
+    <string name="enter_command">Enter shell command</string>
+    <string name="quick_commands">Quick Commands</string>
+    <string name="previous_command">Previous Command</string>
+    <string name="next_command">Next Command</string>
+    <string name="output_hint">Output will appear here…</string>
+    
+    <!-- Warnings -->
+    <string name="shizuku_warning">Shizuku is not running. Please start Shizuku first to use optimization features.\n\nYou can start Shizuku via:\n• Wireless Debugging (Android 11+)\n• ADB over USB\n• Root (if device is rooted)</string>
+    <string name="requires_root">Requires Root</string>
+</resources>
